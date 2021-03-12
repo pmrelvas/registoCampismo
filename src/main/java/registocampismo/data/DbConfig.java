@@ -7,13 +7,13 @@ public class DbConfig {
 	
 	private final static DbConfig instance = null;
 	
+	private static final String DB_URL = "jdbc:sqlite:./registos_campismo.db";
+	
 	private DbConfig() {
 		Connection connection = null;
-		String executionPath = System.getProperty("user.dir");
-		String dbUrl = "jdbc:sqlite:" + executionPath + "/db/registocampismo.db";
 		
 		try {
-			connection = DriverManager.getConnection(dbUrl);
+			connection = DriverManager.getConnection(DB_URL);
 			System.out.println("Successfuly connected to the DB");
 		} catch (Exception e) {
 			System.out.println("Error connecting to the DB: " + e.getMessage());

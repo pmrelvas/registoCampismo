@@ -68,7 +68,7 @@ public class MainForm {
 		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					SettingsDialog dialog = new SettingsDialog();
+					SettingsDialog3 dialog = new SettingsDialog3();
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 					dialog.setVisible(true);
 				} catch (Exception exception) {
