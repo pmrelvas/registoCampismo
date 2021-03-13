@@ -20,6 +20,7 @@ repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    mavenCentral()
 }
 
 dependencies {
@@ -28,15 +29,12 @@ dependencies {
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation 'com.google.guava:guava:28.2-jre'
-    
-    // lombok
-    compileOnly 'org.projectlombok:lombok:1.18.16'
-	annotationProcessor 'org.projectlombok:lombok:1.18.16'
-	testCompileOnly 'org.projectlombok:lombok:1.18.16'
-	testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
 	
 	// https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
 	implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.34.0'
+	
+	
+	implementation 'org.hibernate:hibernate-core:5.4.29.Final'
 	
 
     // Use JUnit test framework

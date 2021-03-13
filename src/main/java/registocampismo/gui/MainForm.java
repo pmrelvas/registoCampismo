@@ -58,7 +58,7 @@ public class MainForm {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JComboBox comboBoxMonth = new JComboBox();
-		comboBoxMonth.setModel(new DefaultComboBoxModel(new String[] {"janeiro", "fevereiro", "mar\u00E7o", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"}));
+		comboBoxMonth.setModel(new DefaultComboBoxModel(new String[] {"janeiro", "fevereiro", "marco", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"}));
 		
 		JPanel panel = new JPanel();
 		
@@ -68,7 +68,7 @@ public class MainForm {
 		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					SettingsDialog3 dialog = new SettingsDialog3();
+					SettingsDialog dialog = new SettingsDialog();
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 					dialog.setVisible(true);
 				} catch (Exception exception) {

@@ -5,21 +5,27 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-public class NewEntryDialog extends JDialog {
+import registocampismo.domain.usecases.entrances.RegisterEntranceUseCase;
 
-	private static final long serialVersionUID = -1367560633107866857L;
+import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.awt.event.ActionEvent;
+
+public class NewEntryDialog extends JDialog {
+private static final long serialVersionUID = -1367560633107866857L;
 	
 	private final JPanel contentPanel = new JPanel();
+	private final RegisterEntranceUseCase registerEntranceUseCase = new RegisterEntranceUseCase();
 
 
 	/**
@@ -37,7 +43,7 @@ public class NewEntryDialog extends JDialog {
 		
 		JLabel lblNewLabel_1 = new JLabel("Dia");
 		
-		JLabel lblNewLabel_2 = new JLabel("M\u00EAs");
+		JLabel lblNewLabel_2 = new JLabel("Mes");
 		
 		JLabel lblNewLabel_3 = new JLabel("Ano");
 		
@@ -193,6 +199,11 @@ public class NewEntryDialog extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						registerEntranceUseCase.execute(LocalDateTime.now(), LocalDateTime.now());
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -204,4 +215,5 @@ public class NewEntryDialog extends JDialog {
 			}
 		}
 	}
+	
 }
