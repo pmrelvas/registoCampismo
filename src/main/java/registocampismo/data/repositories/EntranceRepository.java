@@ -12,7 +12,7 @@ import registocampismo.domain.entities.Entrance;
 
 public class EntranceRepository {
 	
-	final EntityManager entityManager;
+	private final EntityManager entityManager;
 	
 	public EntranceRepository() {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("RegistoCampismo_JPA");

@@ -13,9 +13,18 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
+import registocampismo.domain.entities.Setting;
+import registocampismo.domain.usecases.settings.ReadSettingUseCase;
+
+import java.awt.event.ActionListener;
+import java.util.stream.Collectors;
+import java.awt.event.ActionEvent;
+
 public class SettingsDialog extends JDialog {
 	
 	private static final long serialVersionUID = 9087660598366505404L;
+	
+	private final ReadSettingUseCase readSettingUseCase;
 	
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textFieldPriceElectricityLowSeason;
@@ -30,7 +39,7 @@ public class SettingsDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public SettingsDialog() {
+	public SettingsDialog() {	
 		setResizable(false);
 		setBounds(100, 100, 370, 350);
 		getContentPane().setLayout(new BorderLayout());
@@ -139,15 +148,36 @@ public class SettingsDialog extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.setContentAreaFilled(false);
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.setContentAreaFilled(false);
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
+		
+		readSettingUseCase = new ReadSettingUseCase();
+		textFieldPricePersonHighSeason.setText(readSettingUseCase.getPricePersonHighSeason().toString());
+		textFieldPricePersonLowSeason.setText(readSettingUseCase.getPricePersonLowSeason().toString());
+		textFieldPriceDogHighSeason.setText(readSettingUseCase.getPriceDogHighSeason().toString());
+		textFieldPriceDogLowSeason.setText(readSettingUseCase.getPriceDogLowSeason().toString());
+		textFieldPriceElectricityHighSeason.setText(readSettingUseCase.getPriceElectricityHighSeason().toString());
+		textFieldPriceElectricityLowSeason.setText(readSettingUseCase.getPriceElectricityLowSeason().toString());
+		textFieldMonthsHighSeason.setText(String.join(", ", readSettingUseCase.getMonthsHighSeason().stream().map((m) -> m.toString()).collect(Collectors.toList())));
+		textFieldMonthsLowSeason.setText(String.join(", ", readSettingUseCase.getMonthsLowSeason().stream().map((m) -> m.toString()).collect(Collectors.toList())));
 	}
 }
